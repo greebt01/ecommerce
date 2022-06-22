@@ -1,7 +1,9 @@
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Shop {
     static  double totalAmount;
+    static NumberFormat usd = NumberFormat.getCurrencyInstance();
     static Scanner keyboard= new Scanner(System.in);
 static Product[] inventory= {new Product("Business Ritual Women's long Sleeve Top", 65.39, "Apparel", 4, 'L', "Blue"),
         new Product("The Art of Computer Programming", 190.54 , "Books", 9, "Donald E. Knuth"),
@@ -24,15 +26,27 @@ static void displayMenu() {
             userInput = keyboard.nextInt();
             if (userInput>=0 && userInput<5)
                 if (inventory[userInput].buy()) {
-                System.out.println("Your purchase was successful");
-                totalAmount += inventory[userInput].getPrice();
-                } else if (userInput<0 || userInput>4){
-                break;
+                    System.out.println("Your purchase was successful");
+                    totalAmount += inventory[userInput].getPrice();
                 } else {
-                System.out.println("Sorry!  This product is out of stock.");
+                    System.out.println("Sorry!  This product is out of stock.");
                 }
         } while (userInput >= 0 && userInput < 5);
-        System.out.println("Thank you for shopping with us!  The total amount is " + totalAmount);
+/*      this is the main method with a while (true) loop
+        while (true) {
+            displayMenu();
+            userInput=keyboard.nextInt();
+            if (userInput>=0 && userInput<5) {
+                if (inventory[userInput].buy()) {
+                    System.out.println("Your purchase was successful");
+                    totalAmount += inventory[userInput].getPrice();
+                } else {
+                    System.out.println("Sorry!  This product is out of stock.");
+                }
+             }
+        }
+*/
+        System.out.println("Thank you for shopping with us!  The total amount is " + usd.format(totalAmount));
 
         keyboard.close();
 
