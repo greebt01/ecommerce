@@ -21,18 +21,18 @@ static void displayMenu() {
 
 
         int userInput;
-        do {
-            displayMenu();
-            userInput = keyboard.nextInt();
-            if (userInput>=0 && userInput<5)
-                if (inventory[userInput].buy()) {
-                    System.out.println("Your purchase was successful");
-                    totalAmount += inventory[userInput].getPrice();
-                } else {
-                    System.out.println("Sorry!  This product is out of stock.");
-                }
-        } while (userInput >= 0 && userInput < 5);
-/*      this is the main method with a while (true) loop
+//        do {
+//            displayMenu();
+//            userInput = keyboard.nextInt();
+//            if (userInput>=0 && userInput<5)
+//                if (inventory[userInput].buy()) {
+//                    System.out.println("Your purchase was successful");
+//                    totalAmount += inventory[userInput].getPrice();
+//                } else {
+//                    System.out.println("Sorry!  This product is out of stock.");
+//                }
+//        } while (userInput >= 0 && userInput < 5);
+//      this is the main method with a while (true) loop
         while (true) {
             displayMenu();
             userInput=keyboard.nextInt();
@@ -43,9 +43,11 @@ static void displayMenu() {
                 } else {
                     System.out.println("Sorry!  This product is out of stock.");
                 }
-             }
+            } else {
+                break;
+            }
         }
-*/
+
         System.out.println("Thank you for shopping with us!  The total amount is " + usd.format(totalAmount));
 
         keyboard.close();
